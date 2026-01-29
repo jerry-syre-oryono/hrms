@@ -47,6 +47,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'attendances' => $resource
         ]);
     })->name('attendance.index');
+
+    Route::get('/leaves', function () {
+        $leaves = \App\Models\Leave::with(['employee.user', 'leaveType'])->latest()->paginate(10);
+        $leaveTypes = \App\Models\LeaveType::all();
+
+        return Inertia::render('leaves/index', [
+            'leaves' => \App\Http\Resources\LeaveResource::collection($leaves),
+            'leaveTypes' => $leaveTypes
+        ]);
+    })->name('leaves.index');
 });
 
 require __DIR__ . '/settings.php';

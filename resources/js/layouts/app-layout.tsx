@@ -10,6 +10,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
         { label: 'Departments', href: '/departments' },
         { label: 'Positions', href: '/positions' },
         { label: 'Attendance', href: '/attendance' },
+        { label: 'Leaves', href: '/leaves' },
     ];
 
     return (
